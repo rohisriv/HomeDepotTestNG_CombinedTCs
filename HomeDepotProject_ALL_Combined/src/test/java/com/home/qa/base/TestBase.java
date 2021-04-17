@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import com.home.qa.util.TestUtil;
 
@@ -33,7 +34,12 @@ public class TestBase {
 		String browserName= prop.getProperty("browser");
 		if(browserName.equals("chrome")) {
 			System.setProperty("webdriver.chrome.driver","C:\\Users\\rohin\\neweclipse-workspace\\HomeDepotProject_Combined\\Drivers\\chromedriver.exe");
-			driver = new ChromeDriver();
+			ChromeOptions op = new ChromeOptions();
+			op.setHeadless(true);
+			op.addArguments("window-size=1920,1080");
+			driver = new ChromeDriver(op);
+			
+			//driver = new ChromeDriver();
 		}
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
